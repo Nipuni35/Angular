@@ -25,6 +25,10 @@ import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -44,11 +48,15 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatToolbarModule,
     MatGridListModule,
     MatCardModule,
+    MatDialogModule,
     MatButtonModule,
     MatListModule,
     FlexLayoutModule,
     AppRoutingModule,
-    MatDialogModule
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule,
+    FormsModule
   ],
   providers: [DishService, PromotionService, LeaderService],
   bootstrap: [AppComponent],

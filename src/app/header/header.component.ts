@@ -9,6 +9,7 @@ import { LoginComponent } from '../login/login.component';
 export class HeaderComponent implements OnInit {
 
   constructor(public dialog: MatDialog) { }
+
   // tslint:disable-next-line:typedef
   openLoginForm() {
     this.dialog.open(LoginComponent, {width: '500px', height: '450px'});
