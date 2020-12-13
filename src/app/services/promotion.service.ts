@@ -3,6 +3,8 @@ import { Promotion } from '../shared/promotion';
 import { PROMOTIONS } from '../shared/promotions';
 import {DISHES} from '../shared/dishes';
 import {LEADERS} from '../shared/leaders';
+import { Observable, of } from 'rxjs';
+import {delay} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,24 +12,16 @@ import {LEADERS} from '../shared/leaders';
 export class PromotionService {
 
   constructor() { }
-  getPromotions(): Promise<Promotion []> {
-    return new Promise(resolve => {
-      // Simulate server latency with 2 second delay
-      setTimeout(() => resolve(PROMOTIONS), 2000);
-    });  }
+  getPromotions(): Observable<Promotion[]> {
+    return of(PROMOTIONS).pipe(delay(2000));
+  }
 
-  getPromotion(id: number): Promise<Promotion> {
+  getPromotion(id: number): Observable<Promotion> {
     // @ts-ignore
-    return new Promise(resolve => {
-      // Simulate server latency with 2 second delay
-      // @ts-ignore
-      setTimeout(() => resolve(PROMOTIONS.filter((promotion) => (promotion.id === id))[0]), 2000);
-    });  }
+    return of(PROMOTIONS.filter((promotion) => (promotion.id === id))[0]).pipe(delay(2000));
+  }
 
-  getFeaturedPromotion(): Promise<Promotion> {
-    return  new Promise(resolve => {
-      // Simulate server latency with 2 second delay
-      setTimeout(() => resolve(PROMOTIONS.filter((promotion) => promotion.featured)[0]), 2000);
-    });
+  getFeaturedPromotion(): Observable<Promotion> {
+    return of(PROMOTIONS.filter((promotion) => promotion.featured)[0]).pipe(delay(2000));
   }
 }
