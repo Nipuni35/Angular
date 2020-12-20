@@ -53,7 +53,8 @@ export class ContactComponent implements OnInit {
   feedback: Feedback;
   contactType = ContactType;
   errMess: string;
-
+  showForm: boolean;
+  showDetails: boolean;
   constructor(private fb: FormBuilder,
               private feedbackService: FeedbackService) {
     this.createForm();
@@ -64,6 +65,8 @@ export class ContactComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   createForm() {
+    this.showForm = true;
+    this.showDetails = false;
     this.feedbackForm = this.fb.group({
       firstname: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
       lastname: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
@@ -105,8 +108,14 @@ export class ContactComponent implements OnInit {
   onSubmit() {
     this.feedback = this.feedbackForm.value;
     console.log(this.feedback);
-    this.feedbackService.submitFeedback(this.feedback).subscribe(feedback => {
-        this.feedback = feedback;},
+    this.showForm = false;
+    this.feedbackService.submitFeedback(this.feedback).subscribe(
+      feedback => {this.feedback = feedback;
+                   this.showDetails = true;
+                   setTimeout(() => {
+          this.showForm = true;
+          this.showDetails = false;
+        }, 5000); },
       errmess => { this.feedback = null; this.errMess = (errmess as any); });
 
     this.feedbackForm.reset({
