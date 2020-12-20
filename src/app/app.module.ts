@@ -9,7 +9,6 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { AppRoutingModule } from './app-routing/app-routing.module';
-
 import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
@@ -36,6 +35,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatSliderModule} from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { baseURL } from './shared/baseurl';
+import {ProcessHTTPMsgService} from './services/process-httpmsg.service';
 
 @NgModule({
   declarations: [
@@ -71,7 +71,7 @@ import { baseURL } from './shared/baseurl';
     MatSliderModule,
     HttpClientModule
   ],
-  providers: [DishService, PromotionService, LeaderService,
+  providers: [DishService, PromotionService, LeaderService, ProcessHTTPMsgService,
     {provide: 'BaseURL', useValue: baseURL}
   ],
   bootstrap: [AppComponent],
